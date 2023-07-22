@@ -8,7 +8,7 @@ def main():
     pare = color_rojo + "+" + color_reset
 #   ------------------------------------------------------------
 #   Definir los alcances del progrmama
-    n = 2500         #Tamaño total de la matriz total
+    n = 2500         #Tamaño total de la matriz
     menor = 80     #Tamano de la matriz a mostrar dentro de (n)
     epocas = 100   #Define el rango de epocas a calcular
     cvi = 3        #Define aproximadamente el porcentaje de celulas vivas iniciales // porcent≈(100/cvi+1)%
