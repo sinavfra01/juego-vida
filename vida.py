@@ -188,19 +188,12 @@ def limite_2(coordenadas_limite):
     return lim2
 
 
-def coordenadas_mostrar(lim1, lim2, menor):
-    coordenadas = []
+def imagen_mostrar(lim1, lim2, menor, n, matrix):
+    img = []
     for i in range(menor):
         for k in range(lim1[i][1], (lim2[i][1])+1):
-            coordenadas.append([lim1[i][0], k])
-    return coordenadas
-
-
-def matriz_mostrar(coordenadas, n, matrix, menor):
-    img = []
-    for i in range(menor**2):
-        x = conversor_coordenadas(coordenadas[i], n)
-        img.append(matrix[x])
+            coordenadas = ([lim1[i][0], k])
+            img.append(matrix[conversor_coordenadas(coordenadas, n)])
     return img
 
 
@@ -212,8 +205,7 @@ def conversor_coordenadas(coordenada, n):
 def proceso(coordenadas_limite, n, matrix, menor):
     lim1 = limite_1(coordenadas_limite)
     lim2 = limite_2(coordenadas_limite)
-    coordenadas = coordenadas_mostrar(lim1, lim2, menor)
-    img = matriz_mostrar(coordenadas, n, matrix, menor)
+    img = imagen_mostrar(lim1, lim2, menor, n, matrix)
 
     l = menor ** 2
     for i in range(menor):
