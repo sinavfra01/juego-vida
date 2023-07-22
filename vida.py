@@ -11,7 +11,7 @@ def main():
     n = 2500         #Tamaño total de la matriz
     menor = 80     #Tamano de la matriz a mostrar dentro de (n)
     epocas = 100   #Define el rango de epocas a calcular
-    cvi = 3        #Define aproximadamente el porcentaje de celulas vivas iniciales // porcent≈(100/cvi+1)%
+    cvi = 3        #Define aproximadamente el porcentaje de celulas vivas iniciales // porcent≈[100/(cvi+1)]%
     steps = 30      #Define el avance de casillas hacia cualquier direccion una vez seleccionada la epoca
 #   ------------------------------------------------------------
     coordenadas_limite = [[0, 0], [menor-1, 0], [0, menor-1], [menor-1, menor-1]]
