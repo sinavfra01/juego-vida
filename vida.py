@@ -8,11 +8,11 @@ def main():
     pare = color_rojo + "+" + color_reset
 #   ------------------------------------------------------------
 #   Definir los alcances del progrmama
-    n = 2500         #Tamaño total de la matriz
-    menor = 80     #Tamano de la matriz a mostrar dentro de (n)
+    n = 20       #Tamaño total de la matriz
+    menor = 8     #Tamano de la matriz a mostrar dentro de (n)
     epocas = 100   #Define el rango de epocas a calcular
+    steps = 2      #Define el avance de casillas hacia cualquier direccion una vez seleccionada la epoca
     cvi = 3        #Define aproximadamente el porcentaje de celulas vivas iniciales // porcent≈[100/(cvi+1)]%
-    steps = 30      #Define el avance de casillas hacia cualquier direccion una vez seleccionada la epoca
 #   ------------------------------------------------------------
     coordenadas_limite = [[0, 0], [menor-1, 0], [0, menor-1], [menor-1, menor-1]]
     direcciones = ["w", "a", "s", "d", "e", "n"]
@@ -174,18 +174,13 @@ def mover_izquierda(coordenadas_limite, n, steps):
         coordenadas_limite[3][1] = (coordenadas_limite[3][1])+steps
 
 
-def limite_1(coordenadas_limite):
+def limites(coordenadas_limite):
     lim1 = []
+    lim2 = []
     for i in range(coordenadas_limite[0][0], (coordenadas_limite[1][0])+1):
         lim1.append([i, coordenadas_limite[0][1]])
-    return lim1
-
-
-def limite_2(coordenadas_limite):
-    lim2 = []
-    for i in range(coordenadas_limite[2][0], (coordenadas_limite[3][0])+1):
         lim2.append([i, coordenadas_limite[2][1]])
-    return lim2
+    return lim1, lim2
 
 
 def imagen_mostrar(lim1, lim2, menor, n, matrix):
@@ -203,8 +198,7 @@ def conversor_coordenadas(coordenada, n):
 
 
 def proceso(coordenadas_limite, n, matrix, menor):
-    lim1 = limite_1(coordenadas_limite)
-    lim2 = limite_2(coordenadas_limite)
+    lim1, lim2 = limites(coordenadas_limite)
     img = imagen_mostrar(lim1, lim2, menor, n, matrix)
 
     l = menor ** 2
