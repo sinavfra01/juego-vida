@@ -13,20 +13,18 @@ def main():
 
     matriz = [black for i in range(8**2)]
     reseteador = list(matriz)
-    gusano = [[1, 1] for i in range(64)]
-    gusano[0] = [3, 3]
-    long_gus = 1
+    gusano = [[3, 3]]
     r = 0
 
     matriz[conversor(gusano[0])] = white
     sense.set_pixels(matriz)
     matriz = list(reseteador)
-    time.sleep(0.8)
+    time.sleep(0.5)
 
     while True:
         if r == 0:
             r = 1
-            xe = [random.randint(0, 7), random.randint(0, 7)]
+            xe = [random.randint(0, 6), random.randint(0, 6)]
             if xe not in gusano:
                 matriz[conversor(xe)] = red
                 reseteador[conversor(xe)] = red
@@ -47,45 +45,42 @@ def main():
             direccion = [0, 1]
 
         if direccion[0] == 1:
+            #cas_ant = list(gusano[0])
             cas_sig = [gusano[0][0], gusano[0][1]+direccion[1]]
-            print(cas_sig)
-            if cas_sig in gusano and (cas_sig[1] < 0 or cas_sig[1] > 7):
-                break
+
+            if cas_sig in gusano or (cas_sig[1] < 0 or cas_sig[1] > 7):
+                continue
             else:
-                for i in range(long_gus):
-                    coor = [gusano[i][0], gusano[i][1]+direccion[1]]
+                for i in range(len(gusano)):
+                    coor = [gusano[i][0], gusano[i][1] + direccion[1]]
                     gusano[i] = coor
                     matriz[conversor(coor)] = white
 
-                if matriz[conversor(cas_sig)] == red:
-                    gusano[long_gus] = cas_sig
+                if reseteador[conversor(cas_sig)] == red:
+                    #gusano.append(cas_ant)
+                    reseteador[conversor(cas_sig)] = black
                     r = 0
-                    reseteador[conversor(xe)] = black
-                    for i in range(long_gus):
-                        gusano[i], gusano[i+1] = gusano[i+1], gusano[i]
-                    long_gus += 1
+                #
         else:
+            #cas_ant = list(gusano[0])
             cas_sig = [gusano[0][0]+direccion[1], gusano[0][1]]
-            print(cas_sig)
-            if cas_sig in gusano and (cas_sig[0] < 0 or cas_sig[0] > 7):
-                break
+
+            if cas_sig in gusano or (cas_sig[0] < 0 or cas_sig[0] > 7):
+                continue
             else:
-                for i in range(long_gus):
+                for i in range(len(gusano)):
                     coor = [gusano[i][0] + direccion[1], gusano[i][1]]
                     gusano[i] = coor
                     matriz[conversor(coor)] = white
 
-                if matriz[conversor(cas_sig)] == red:
-                    gusano[long_gus] = cas_sig
+                if reseteador[conversor(cas_sig)] == red:
+                    #gusano.append(cas_ant)
+                    reseteador[conversor(cas_sig)] = black
                     r = 0
-                    reseteador[conversor(xe)] = black
-                    for i in range(long_gus):
-                        gusano[i], gusano[i + 1] = gusano[i + 1], gusano[i]
-                    long_gus += 1
 
         sense.set_pixels(matriz)
         matriz = list(reseteador)
-        time.sleep(0.8)
+        time.sleep(0.5)
 
 
 def conversor(coordenada):
